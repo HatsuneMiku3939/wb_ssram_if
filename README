@@ -1,0 +1,7 @@
+Wishbone 16-bit SSRAM controller
+	support 32bit Wishbone interface
+	support only 16bit SSRAM
+	support single word, half-word, byte access
+	does not support Wishbone burst operation
+
+License link : http://filepang.mit-license.org/
