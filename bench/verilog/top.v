@@ -3,7 +3,7 @@
 `include "wb_ssram_if_define.v"
 
 module top;
-	
+
 	// --------------------------------------------------
 	// Wishbone common signal
 	// --------------------------------------------------
@@ -22,7 +22,7 @@ module top;
 	wire			WB_ACK		[0:0];
 	wire			WB_CYC		[0:0];
 	wire			WB_ERR		[0:0];
-	wire			WB_RTY		[0:0];	
+	wire			WB_RTY		[0:0];
 
 	// --------------------------------------------------
 	// SSRAM signal
@@ -79,26 +79,26 @@ module top;
 
 	// simple wishbone syscon model
 	wb_simple_syscon Uwb_simple_syscon(
-		  .clk	(WB_CLK		) 
-		, .rst	(WB_RESET	) 
+		  .clk	(WB_CLK		)
+		, .rst	(WB_RESET	)
 	);
-	
+
 	// --------------------------------------------------
 	// Wishbone master model
 	// --------------------------------------------------
 	wb_mast Uwb_master0(
-		  .clk	(WB_CLK		) 
-		, .rst	(WB_RESET	) 
-		
-		, .adr	(WB_ADDR	[0]) 
-		, .din	(WB_DATA_IN	[0]) 
-		, .dout	(WB_DATA_OUT[0]) 
-		, .we	(WB_WE		[0]) 
-		, .sel	(WB_SEL		[0]) 
-		, .stb	(WB_STB		[0]) 
-		, .ack	(WB_ACK		[0]) 
-		, .cyc	(WB_CYC		[0]) 
-		, .err	(WB_ERR		[0]) 
+		  .clk	(WB_CLK		)
+		, .rst	(WB_RESET	)
+
+		, .adr	(WB_ADDR	[0])
+		, .din	(WB_DATA_IN	[0])
+		, .dout	(WB_DATA_OUT[0])
+		, .we	(WB_WE		[0])
+		, .sel	(WB_SEL		[0])
+		, .stb	(WB_STB		[0])
+		, .ack	(WB_ACK		[0])
+		, .cyc	(WB_CYC		[0])
+		, .err	(WB_ERR		[0])
 		, .rty	(WB_RTY		[0])
 	);
 
@@ -106,18 +106,18 @@ module top;
 	// Wishbone SSRAM controller, SSRAM model
 	// --------------------------------------------------
 	wb_ssram_if Uwb_ssram_if (
-		  .clk	(WB_CLK		) 
-		, .rst	(WB_RESET	) 
+		  .clk	(WB_CLK		)
+		, .rst	(WB_RESET	)
 
-		, .adr	(WB_ADDR	[0]) 
-		, .din	(WB_DATA_OUT[0]) 
-		, .dout	(WB_DATA_IN	[0]) 
-		, .we	(WB_WE		[0]) 
-		, .sel	(WB_SEL		[0]) 
-		, .stb	(WB_STB		[0]) 
-		, .ack	(WB_ACK		[0]) 
-		, .cyc	(WB_CYC		[0]) 
-		, .err	(WB_ERR		[0]) 
+		, .adr	(WB_ADDR	[0])
+		, .din	(WB_DATA_OUT[0])
+		, .dout	(WB_DATA_IN	[0])
+		, .we	(WB_WE		[0])
+		, .sel	(WB_SEL		[0])
+		, .stb	(WB_STB		[0])
+		, .ack	(WB_ACK		[0])
+		, .cyc	(WB_CYC		[0])
+		, .err	(WB_ERR		[0])
 		, .rty	(WB_RTY		[0])
 
 		, .SSRAM_CLK_IN		(SSRAM_CLK_IN)
@@ -135,22 +135,22 @@ module top;
 
 	k7a161830b #(.addr_bits(`WB_SSRAM_ADR),
 	             .data_bits(16),
-			     .mem_sizes(1 * 512 * 1024)) 
+			     .mem_sizes(1 * 512 * 1024))
 	Ussram (
-		  .CLK		(SSRAM_CLK		) 
-		, .A		(SSRAM_A		) 
-		, .ADV_N	(1'b1			) 
-		, .ADSP_N	(1'b1			) 
-		, .ADSC_N	(1'b0			) 
-		, .CS1_N	(SSRAM_CE_N		) 
-		, .CS2		(~SSRAM_CE_N	) 
-		, .CS2_N	(SSRAM_CE_N		) 
-		, .WE_N		({SSRAM_UB_N, SSRAM_LB_N}) 
-		, .OE_N		(SSRAM_OE_N		) 
-		, .GW_N		(1'b1			) 
-		, .BW_N		(SSRAM_WE_N		) 
-		, .ZZ		(1'b0			) 
-		, .LBO_N	(1'b1			) 
+		  .CLK		(SSRAM_CLK		)
+		, .A		(SSRAM_A		)
+		, .ADV_N	(1'b1			)
+		, .ADSP_N	(1'b1			)
+		, .ADSC_N	(1'b0			)
+		, .CS1_N	(SSRAM_CE_N		)
+		, .CS2		(~SSRAM_CE_N	)
+		, .CS2_N	(SSRAM_CE_N		)
+		, .WE_N		({SSRAM_UB_N, SSRAM_LB_N})
+		, .OE_N		(SSRAM_OE_N		)
+		, .GW_N		(1'b1			)
+		, .BW_N		(SSRAM_WE_N		)
+		, .ZZ		(1'b0			)
+		, .LBO_N	(1'b1			)
 		, .DQ		(SSRAM_DQ		)
 	);
 
@@ -177,7 +177,7 @@ module top;
 
 		#200 $display("testbench start");
 		#200 $display("\ntestbench write 1 word test");
-		s = 4'b1111;	
+		s = 4'b1111;
 		addr0 = 32'h0000_0000;
 		wdata0 = 32'hDEAD_BEEF;
 
@@ -190,7 +190,7 @@ module top;
 			$display("Single word write/read error");
 			$finish;
 		end
-		 
+
 		#100 $display("\ntestbench write 4 word test");
 		wdata0 = 32'hDEAD_BEE0;
 		wdata1 = 32'hDEAD_BEE1;
@@ -215,7 +215,7 @@ module top;
 		end
 
 		#200 $display("\ntestbench write byte test");
-		s = 4'b0001;	
+		s = 4'b0001;
 		wdata0 = 32'h0000_00EF;
 
 		Uwb_master0.wb_wr1(addr0, s, wdata0);
@@ -227,7 +227,7 @@ module top;
 			$finish;
 		end
 
-		s = 4'b0010;	
+		s = 4'b0010;
 		wdata0 = 32'h0000_BE00;
 
 		Uwb_master0.wb_wr1(addr0, s, wdata0);
@@ -239,7 +239,7 @@ module top;
 			$finish;
 		end
 
-		s = 4'b0100;	
+		s = 4'b0100;
 		wdata0 = 32'h00AD_0000;
 
 		Uwb_master0.wb_wr1(addr0, s, wdata0);
@@ -251,7 +251,7 @@ module top;
 			$finish;
 		end
 
-		s = 4'b1000;	
+		s = 4'b1000;
 		wdata0 = 32'hDE00_0000;
 
 		Uwb_master0.wb_wr1(addr0, s, wdata0);
@@ -264,7 +264,7 @@ module top;
 		end
 
 
-		$display("Testbench OK!");
+		$display("#ALL PASS");
 		#200 $finish;
 	end
 
