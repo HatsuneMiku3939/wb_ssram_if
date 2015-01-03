@@ -1,6 +1,7 @@
 #!/bin/sh
 
 cd sim/icarus
+make clean
 make > sim.log 2>&1
 cat sim.log
 PASSED=`cat sim.log | grep "#ALL PASS" | wc -l`
